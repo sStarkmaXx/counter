@@ -1,33 +1,31 @@
 import React from 'react';
-import { ButtonType } from './App';
+import { CounterSettingsType } from './App';
 import { Button } from './Button';
+import { Display } from './Display';
 
 type CounterPropsType = {
+  countSettings: CounterSettingsType;
   count: number;
-  buttons: Array<ButtonType>;
+  reset: () => void;
+  inc: () => void;
 };
 
 export const Counter: React.FC<CounterPropsType> = (props) => {
-  let buttons = props.buttons.map((btn) => {
-    return (
-      <Button
-        key={btn.id}
-        name={btn.btnName}
-        isDisabled={btn.isDisabled}
-        func={btn.func}
-        count={props.count}
-      />
-    );
-  });
   return (
     <div className="counter">
-      <div
-        className="display"
-        style={props.count === 5 ? { color: 'red' } : { color: 'black' }}
-      >
-        {props.count}
+      <Display count={props.count} maxValue={props.countSettings.maxValue} />
+      <div className="buttons">
+        <Button
+          name="INC"
+          isDisabled={props.count === props.countSettings.maxValue}
+          func={props.inc}
+        />
+        <Button
+          name="RESET"
+          isDisabled={props.count === props.countSettings.startValue}
+          func={props.reset}
+        />
       </div>
-      <div className="buttons">{buttons}</div>
     </div>
   );
 };

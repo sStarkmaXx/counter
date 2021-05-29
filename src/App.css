@@ -5,7 +5,7 @@
 .counter {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   width: 300px;
   height: 300px;
@@ -17,7 +17,6 @@
   display: flex;
   width: 150px;
   height: 50px;
-  margin-bottom: 20px;
   background-color: darkturquoise;
   color: black;
   border-radius: 5px;
@@ -53,4 +52,18 @@ button {
   height: 30px;
   background-color: cyan;
   border-radius: 5px;
+}
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  height: 50px;
+  color: cyan;
+}
+input {
+  width: 100px;
+  border: 2px solid rgb(108, 190, 190);
+  outline: none;
 }

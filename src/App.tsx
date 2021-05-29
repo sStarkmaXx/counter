@@ -1,39 +1,59 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { v1 } from 'uuid';
 import './App.css';
 import { Counter } from './Counter';
+import { CounterSettings } from './CounterSettings';
 
-export type ButtonType = {
-  id: string;
-  btnName: string;
-  isDisabled: boolean;
-  func: () => void;
+export type CounterSettingsType = {
+  maxValue: number;
+  startValue: number;
 };
 
 function App() {
-  const [count, setCount] = useState<number>(0);
-  let buttons: Array<ButtonType> = [
-    {
-      id: v1(),
-      btnName: 'INC',
-      isDisabled: false,
-      func: function () {
-        setCount(count + 1);
-      },
-    },
-    {
-      id: v1(),
-      btnName: 'RESET',
-      isDisabled: true,
-      func: function () {
-        setCount(0);
-      },
-    },
-  ];
+  const [maxValue, setMaxValue] = useState<number>(1);
+  const [startValue, setStartValue] = useState<number>(0);
+  const [count, setCount] = useState<number>(startValue);
+  const [countSettings, setCountSettings] = useState<CounterSettingsType>({
+    maxValue: maxValue,
+    startValue: startValue,
+  });
+
+  function reset() {
+    setCount(startValue);
+  }
+
+  function inc() {
+    setCount(count + 1);
+  }
+  function onChangeMaxValue(e: ChangeEvent<HTMLInputElement>) {
+    setMaxValue(parseInt(e.currentTarget.value));
+  }
+
+  function onChangeStartValue(e: ChangeEvent<HTMLInputElement>) {
+    setStartValue(parseInt(e.currentTarget.value));
+  }
+
+  function set() {
+    setCount(startValue);
+    setCountSettings({ maxValue: maxValue, startValue: startValue });
+  }
 
   return (
     <div className="App">
-      <Counter count={count} buttons={buttons} />
+      <CounterSettings
+        maxValue={maxValue}
+        startValue={startValue}
+        countSettings={countSettings}
+        setCountSettings={setCountSettings}
+        onChangeMaxValue={onChangeMaxValue}
+        onChangeStartValue={onChangeStartValue}
+      />
+      <Counter
+        countSettings={countSettings}
+        count={count}
+        reset={reset}
+        inc={inc}
+      />
     </div>
   );
 }
