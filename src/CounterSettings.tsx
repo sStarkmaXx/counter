@@ -27,9 +27,8 @@ export const CounterSettings: React.FC<CounterPropsType> = (props) => {
           isDisabled={
             (props.countSettings.maxValue === props.maxValue &&
               props.countSettings.startValue === props.startValue) ||
-            props.startValue < 0
-              ? true
-              : props.maxValue <= props.startValue
+            props.startValue < 0 ||
+            props.maxValue <= props.startValue
           }
           func={props.set}
         />

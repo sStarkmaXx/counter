@@ -9,9 +9,7 @@ export type IcomingDateType = {
 
 export const IcomingDate: React.FC<IcomingDateType> = (props) => {
   let style: {} = { backgroundColor: 'coral', border: '2px solid red' };
-  props.startValue < 0 || props.maxValue <= props.startValue
-    ? (style = style)
-    : (style = {});
+  props.startValue < 0 || props.maxValue <= props.startValue || (style = {});
   return (
     <div className="inputs">
       <span>max value</span>
