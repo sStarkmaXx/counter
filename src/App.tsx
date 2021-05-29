@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useState } from 'react';
-import { v1 } from 'uuid';
 import './App.css';
 import { Counter } from './Counter';
 import { CounterSettings } from './CounterSettings';
@@ -38,6 +37,21 @@ function App() {
     setCountSettings({ maxValue: maxValue, startValue: startValue });
   }
 
+  let countValue: string | number = count;
+
+  if (
+    countSettings.maxValue === maxValue &&
+    countSettings.startValue === startValue
+  ) {
+    countValue = count;
+  } else {
+    if (startValue < 0 || maxValue <= startValue) {
+      countValue = 'Incorrect value!';
+    } else if (maxValue > startValue) {
+      countValue = "enter values end press 'set'";
+    }
+  }
+
   return (
     <div className="App">
       <CounterSettings
@@ -52,7 +66,7 @@ function App() {
         maxValue={maxValue}
         startValue={startValue}
         countSettings={countSettings}
-        count={count}
+        count={countValue}
         reset={reset}
         inc={inc}
       />

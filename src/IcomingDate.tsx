@@ -8,6 +8,10 @@ export type IcomingDateType = {
 };
 
 export const IcomingDate: React.FC<IcomingDateType> = (props) => {
+  let style: {} = { backgroundColor: 'coral', border: '2px solid red' };
+  props.startValue < 0 || props.maxValue <= props.startValue
+    ? (style = style)
+    : (style = {});
   return (
     <div className="inputs">
       <span>max value</span>
@@ -16,12 +20,14 @@ export const IcomingDate: React.FC<IcomingDateType> = (props) => {
         type="number"
         onChange={props.onChangeMaxValue}
         value={props.maxValue}
+        style={style}
       />
 
       <input
         type="number"
         onChange={props.onChangeStartValue}
         value={props.startValue}
+        style={style}
       />
     </div>
   );

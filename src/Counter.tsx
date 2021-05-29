@@ -13,34 +13,25 @@ type CounterPropsType = {
 };
 
 export const Counter: React.FC<CounterPropsType> = (props) => {
-  let countValue: string | number = 0;
-  function setcountValue() {
-    if (
-      props.countSettings.maxValue === props.maxValue &&
-      props.countSettings.startValue === props.startValue
-    ) {
-      countValue = props.count;
-    } else {
-      if (props.maxValue > props.startValue) {
-        countValue = "enter values end press 'set'";
-      } else {
-        countValue = 'Incorrect value!';
-      }
-    }
-  }
-  setcountValue();
   return (
     <div className="counter">
-      <Display count={countValue} maxValue={props.countSettings.maxValue} />
+      <Display count={props.count} maxValue={props.countSettings.maxValue} />
       <div className="buttons">
         <Button
           name="INC"
-          isDisabled={props.count === props.countSettings.maxValue}
+          isDisabled={
+            props.count === props.countSettings.maxValue ||
+            typeof props.count === 'string' ||
+            props.startValue < 0
+          }
           func={props.inc}
         />
         <Button
           name="RESET"
-          isDisabled={props.count === props.countSettings.startValue}
+          isDisabled={
+            props.count === props.countSettings.startValue ||
+            typeof props.count === 'string'
+          }
           func={props.reset}
         />
       </div>
