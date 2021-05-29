@@ -15,14 +15,13 @@
 }
 .display {
   display: flex;
-  width: 150px;
+  width: 200px;
   height: 50px;
   background-color: darkturquoise;
   color: black;
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
   font-weight: bolder;
 }
 .buttons {
@@ -34,9 +33,7 @@
   justify-content: space-around;
   align-items: center;
 }
-.disabled {
-  opacity: 0.5;
-}
+
 button {
   width: 70px;
   height: 40px;

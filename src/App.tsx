@@ -44,11 +44,13 @@ function App() {
         maxValue={maxValue}
         startValue={startValue}
         countSettings={countSettings}
-        setCountSettings={setCountSettings}
+        set={set}
         onChangeMaxValue={onChangeMaxValue}
         onChangeStartValue={onChangeStartValue}
       />
       <Counter
+        maxValue={maxValue}
+        startValue={startValue}
         countSettings={countSettings}
         count={count}
         reset={reset}

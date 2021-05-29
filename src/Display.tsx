@@ -1,7 +1,7 @@
 import React from 'react';
 
 type DisplayPropsType = {
-  count: number;
+  count: number | string;
   maxValue: number;
 };
 
@@ -10,7 +10,9 @@ export const Display: React.FC<DisplayPropsType> = (props) => {
     <div
       className="display"
       style={
-        props.count === props.maxValue ? { color: 'red' } : { color: 'black' }
+        props.count === props.maxValue || props.count === 'Incorrect value!'
+          ? { color: 'red' }
+          : { color: 'black' }
       }
     >
       {props.count}

@@ -7,7 +7,7 @@ type CounterPropsType = {
   maxValue: number;
   startValue: number;
   countSettings: CounterSettingsType;
-  setCountSettings: Dispatch<SetStateAction<CounterSettingsType>>;
+  set: () => void | Dispatch<SetStateAction<CounterSettingsType>>;
   onChangeMaxValue: (e: ChangeEvent<HTMLInputElement>) => void;
   onChangeStartValue: (e: ChangeEvent<HTMLInputElement>) => void;
 };
@@ -30,12 +30,7 @@ export const CounterSettings: React.FC<CounterPropsType> = (props) => {
               ? true
               : props.maxValue <= props.startValue
           }
-          func={() =>
-            props.setCountSettings({
-              maxValue: props.maxValue,
-              startValue: props.startValue,
-            })
-          }
+          func={props.set}
         />
       </div>
     </div>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
+import { CounterSettingsType } from './App';
 
 type ButtonPropsType = {
   name: string;
   isDisabled: boolean;
-  func: () => void;
+  func: () => void | Dispatch<SetStateAction<CounterSettingsType>>;
 };
 
 export const Button: React.FC<ButtonPropsType> = (props) => {
