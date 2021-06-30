@@ -1,13 +1,13 @@
-import {createStore,combineReducers} from "redux";
-import {counterReducer} from "./counter-reducer.ts";
-import {startValueReducer} from "./start-value-reducer.ts";
+import { createStore, combineReducers } from 'redux';
+import { counterReducer } from './counter-reducer';
+//import { startValueReducer } from './start-value-reducer';
 
 const rootReducer = combineReducers({
   counter: counterReducer,
-  startValue: startValueReducer
-})
+  //startValue: startValueReducer,
+});
 
-export type AppStateType = ReturnType<typeof rootReducer>
+export type AppStateType = ReturnType<typeof rootReducer>;
 
 export const store = createStore(rootReducer);
 

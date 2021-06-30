@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import './App.css';
 import { Counter } from './Counter';
 import { CounterSettings } from './CounterSettings';
-import { AppStateType } from './bll/storage.ts';
-import { incCounterValueAC } from './bll/counter-reducer.ts';
+import { AppStateType } from './bll/storage';
+import { incCounterValueAC } from './bll/counter-reducer';
 
 export type CounterSettingsType = {
   maxValue: number;
@@ -12,12 +12,13 @@ export type CounterSettingsType = {
 };
 
 function App() {
-
-  const countValueRedux = useSelector<AppStateType, number>(state=>state.counter.countValue);
+  const countValueRedux = useSelector<AppStateType, number>(
+    (state) => state.counter.countValue
+  );
   const dispatch = useDispatch();
-  const incRedux = () =>{
-    dispatch(incCounterValueAC())
-  }
+  const incRedux = () => {
+    dispatch(incCounterValueAC());
+  };
 
   const [maxValue, setMaxValue] = useState<number>(1);
   const [startValue, setStartValue] = useState<number>(0);
@@ -34,7 +35,6 @@ function App() {
   function inc() {
     setCount(count + 1);
   }
-
 
   function onChangeMaxValue(e: ChangeEvent<HTMLInputElement>) {
     setMaxValue(parseInt(e.currentTarget.value));
