@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  CounterInitialStateType,
   IncCounterValueAC,
   ResetCounterValueAC
 } from "../../bll/counter-reducer";
@@ -10,8 +11,8 @@ import { Button } from "../button/Button";
 import { Display } from "../display/Display";
 
 export const Counter = () => {
-  const countValue = useSelector<AppStateType, number>(
-    (state) => state.counter.countValue
+  const counter = useSelector<AppStateType, CounterInitialStateType>(
+    (state) => state.counter
   );
   const settingsValues = useSelector<AppStateType, InitialStateType>(
     (state) => state.settings
@@ -26,17 +27,19 @@ export const Counter = () => {
     dispatch(IncCounterValueAC());
   }
 
-  let displayValue: number | string = countValue;
-
   return (
     <div className="counter">
-      <Display count={displayValue} maxValue={settingsValues.maxValue} />
+      <Display
+        count={counter.displayValue}
+        maxValue={settingsValues.maxValue}
+      />
       <div className="buttons">
         <Button
           name="INC"
           isDisabled={
-            countValue === settingsValues.maxValue ||
-            typeof displayValue === "string" ||
+            counter.countValue === settingsValues.maxValue ||
+            counter.displayValue === "Incorrect value!" ||
+            counter.displayValue === "enter values end press 'set'" ||
             settingsValues.startValue < 0
           }
           func={inc}
@@ -44,8 +47,9 @@ export const Counter = () => {
         <Button
           name="RESET"
           isDisabled={
-            displayValue === settingsValues.startValue ||
-            typeof displayValue === "string"
+            counter.countValue === settingsValues.startValue ||
+            counter.displayValue === "Incorrect value!" ||
+            counter.displayValue === "enter values end press 'set'"
           }
           func={reset}
         />
