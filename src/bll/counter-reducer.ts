@@ -1,20 +1,44 @@
+import { SettingsValueActionType } from "./settings-reducer";
+
 const counterInitialState = {
-  countValue: 0
-}
+  countValue: 0,
+  displayValue: "0"
+};
 
-type InitialStateType = typeof counterInitialState
+type ActionsType =
+  | IncValueActionType
+  | ResetCounterValueActionType
+  | SettingsValueActionType;
 
-export const counterReducer = (state:InitialStateType = counterInitialState, action: IncValueActionType):InitialStateType => {
+export type CounterInitialStateType = typeof counterInitialState;
+
+export const counterReducer = (
+  state: CounterInitialStateType = counterInitialState,
+  action: ActionsType
+): CounterInitialStateType => {
   switch (action.type) {
-    case 'INC-COUNTER-VALUE':
-      return {...state, countValue: state.countValue+1}
+    case "INC-COUNTER-VALUE":
+      return { ...state, countValue: state.countValue + 1 };
+    case "RESET-COUNTER-VALUE":
+      return { ...state, countValue: action.startValue };
+    case "SET-SETTINGS-VALUES":
+      return { ...state, countValue: action.startValue };
     default:
-      return state
+      return state;
   }
-}
+};
 
-export const incCounterValueAC = () =>({
-  type: 'INC-COUNTER-VALUE'
-}as const)
+export const IncCounterValueAC = () => ({
+  type: "INC-COUNTER-VALUE" as const
+});
 
-export type IncValueActionType = ReturnType<typeof incCounterValueAC>
+export type IncValueActionType = ReturnType<typeof IncCounterValueAC>;
+
+export const ResetCounterValueAC = (startValue: number) => ({
+  type: "RESET-COUNTER-VALUE" as const,
+  startValue
+});
+
+export type ResetCounterValueActionType = ReturnType<
+  typeof ResetCounterValueAC
+>;
