@@ -46,7 +46,7 @@ export const CounterSettings = () => {
     if (newStartValue < 0 || newMaxValue <= newStartValue) {
       counter.displayValue = "Incorrect value!";
     } else if (newMaxValue > newStartValue) {
-      counter.displayValue = "enter values end press 'set'";
+      counter.displayValue = "Please press 'SET'!";
     }
   }
 

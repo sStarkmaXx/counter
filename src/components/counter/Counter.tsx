@@ -29,10 +29,7 @@ export const Counter = () => {
 
   return (
     <div className="counter">
-      <Display
-        count={counter.displayValue}
-        maxValue={settingsValues.maxValue}
-      />
+      <Display />
       <div className="buttons">
         <Button
           name="INC"

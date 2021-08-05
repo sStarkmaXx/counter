@@ -1,21 +1,24 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { AppStateType } from "../../bll/store";
 
-type DisplayPropsType = {
-  count: number | string;
-  maxValue: number;
-};
-
-export const Display: React.FC<DisplayPropsType> = (props) => {
+export const Display = () => {
+  const displayValue = useSelector<AppStateType, string>(
+    (state) => state.counter.displayValue
+  );
+  const maxValue = useSelector<AppStateType, number>(
+    (state) => state.settings.maxValue
+  );
   return (
     <div
       className="display"
       style={
-        props.count === props.maxValue || props.count === "Incorrect value!"
+        Number(displayValue) === maxValue || displayValue === "Incorrect value!"
           ? { color: "red" }
           : { color: "black" }
       }
     >
-      {props.count}
+      {displayValue}
     </div>
   );
 };
